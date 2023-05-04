@@ -39,6 +39,16 @@ X:template body (lang) {
         <ul class="mobilemenu">
             !! "document(concat($XML, '/menu.xml'))
                         /menus/menu[@lang = $lang]/item";
+            <li><br/></li>
+            <li>directive lookup <a class="tooltip" href="#"
+            text="Exact match on directive name or $variable name will redirect to the reference docs">
+            <span>ℹ</span>
+            </a>
+            <form action="/s" method="GET">
+                <input type="text" name="q" size="12"></input>
+                <input type="submit" value="go"></input>
+            </form>
+            <br/></li>
         </ul>
         </div>
         </nav>

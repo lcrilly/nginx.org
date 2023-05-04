@@ -300,6 +300,53 @@ sup {
     height: 100%;
 }
 
+/* Tool tip */
+.tooltip:link,
+.tooltip:visited { /* basic link styles */
+  position:relative; 
+  text-decoration:underline;
+}
+.tooltip:hover {
+  text-decoration:none; /* remove underline on tooltip text */
+}
+/* tooltip body text */
+.tooltip:hover:before {
+  display:block;
+  background:#eee;
+  content:attr(text); /* this link attribute contains tooltip text */
+  position:absolute;
+  font-size:0.8em;
+  color:#404040;
+  bottom:20px;/* ensure link text is visible under tooltip */
+  right:0px;  /* align both tooltip and link right edges */
+  width:10em;  /* a reasonable width to wrap tooltip text */
+  text-align:center;
+  padding:4px;
+  border:2px solid #909090;
+  border-radius:5px;
+}
+/* styles shared by both triangles */
+.tooltip:hover span:before,
+.tooltip:hover span:after {
+  content:"";
+  position:absolute;
+  border-style:solid;
+}
+/* outer triangle: for border */
+.tooltip:hover span:before {
+  bottom:5px; /* value = tooltip:hover:before (border-width*2)+1 */
+  right:18px; /* controls horizontal position */
+  border-width:16px 16px 0; /* top, right-left, bottom */
+  border-color:#909090 transparent; /* top/bottom, right-left (lazy becasue bottom is 0) */
+}
+/* inner triangle: for fill */
+.tooltip:hover span:after {
+  bottom:8px; /* value = tooltip:before (border-width*2) */
+  right:20px; /* above 'right' value + 2 */
+  border-width:14px 14px 0; /* 2 less than above */
+  border-color:#eee transparent; /* tweak opacity by eye/eyedropper to obscure outer triangle colour */
+}
+
 @media screen and (max-width:768px) {
     #main {
         padding: 20px;
@@ -456,6 +503,12 @@ sup {
     code {
         background:#0c1622;
         color: #ddd!important;
+    }
+    input[type=text] {
+        color: #eee;
+        background: #0f1b29;
+        border: 1px solid #909090;
+        border-radius: 3px;
     }
     .lightimage {
         display: none!important;
