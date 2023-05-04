@@ -48,6 +48,12 @@ body {
 #content {
     margin-right: 13.5em;
     padding: 0 2.5em 0 1.5em;
+    min-height: 650px;
+}
+
+#footer {
+    border-top: 2px solid #DDD;
+    margin-left: 1.5em;
 }
 
 h1 {
@@ -356,6 +362,9 @@ sup {
         width: 100%!important;
         padding: 0;
         border: none;
+    }
+    #footer {
+        margin-left: 0;
     }
 
     #banner-content {

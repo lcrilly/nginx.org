@@ -133,6 +133,9 @@ X:template body (lang) {
             </td></tr></table>
         }
     </div>
+    <div id="footer">
+    <a href="/">nginx.org</a>
+    </div>
     </div>
     </body>
 
