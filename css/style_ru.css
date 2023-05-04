@@ -457,4 +457,10 @@ sup {
         background:#0c1622;
         color: #ddd!important;
     }
+    .lightimage {
+        display: none!important;
+    }
+    .darkimageWrapper, .darkimage {
+        display: block!important;
+    }
 }
