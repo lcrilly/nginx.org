@@ -40,14 +40,37 @@ X:template = "/news" {
     <title> !{@name} X:if "$YEAR" { X:text{: } !{$YEAR} } </title>
 
     !style (lang="@lang")
-
+    <!-- this is just the banner javacript - Nothing else! -->
     !banner ()
-
     </head>
 
     !body (lang="@lang")
 
     </html>
+}
+
+X:template = "years/year[@year]" {
+    X:if "position() = 1" {
+        X:text disable-output-escaping="yes" {
+            &lt;div class="dropdown"&gt;
+            &lt;button class="dropbtn"&gt;news archive ▾&lt;/button&gt;
+            &lt;div class="dropdown-content"&gt;
+        }
+    }
+
+    X:if "position() != last()" {
+        X:if "$YEAR=@year" {
+            <b><a href="{@href}">!{@year}</a></b>
+        } else {
+            <a href="{@href}">!{@year}</a>
+        }
+    }
+
+    X:if "position() = last()" {
+        X:text disable-output-escaping="yes" {
+            &lt;/div&gt;&lt;/div&gt;
+        }
+    }
 }
 
 
@@ -56,13 +79,17 @@ X:template = "event" {
     X:var year = { !{substring(../event[position()=1]/@date, 1, 4)} }
     X:var y = { !{substring(@date, 1, 4)} }
 
-    X:if "position() = 1" {
+    <!--
+      -- LC: This looks like a hack to wrap the events in a table
+      -- I had to increment the position() predicate to skip the menu
+      -->
+    X:if "position() = 2" {
         X:text disable-output-escaping="yes" {
             &lt;table class="news"&gt;
         }
     }
 
-    X:if "(not($YEAR) and ($year = $y or position() &lt; 11)) or $YEAR=$y" {
+    X:if "(not($YEAR) and ($year = $y or position() &lt; 12)) or $YEAR=$y" {
         <tr>
         <td class="date">
             <a name="{@date}" /> !{@date}
